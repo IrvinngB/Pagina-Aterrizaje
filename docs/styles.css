@@ -1,8 +1,8 @@
 :root {
-    --primary-color: #7b5b9e; /* Un morado pastel suave */
-    --secondary-color: #f3e9f7; /* Un lila muy claro */
-    --accent-color: #a084ca; /* Un morado más oscuro para acentos */
-    --text-color: #333; /* Un gris oscuro */
+    --primary-color: #1d4e89; /* Azul oscuro */
+    --secondary-color: #f2f6f9; /* Azul muy claro o blanco */
+    --accent-color: #e64a19; /* Naranja brillante */
+    --text-color: #333; /* Gris oscuro */
     --background-color: #ffffff; /* Blanco puro */
 }
 
@@ -99,7 +99,7 @@ h1, h2, h3 {
 
 .cta-button {
     display: inline-block;
-    background-color: var(--accent-color);
+    background-color: var(--accent-color); /* Naranja brillante */
     color: var(--secondary-color);
     padding: 0.75rem 1.5rem;
     text-decoration: none;
@@ -110,7 +110,7 @@ h1, h2, h3 {
 }
 
 .cta-button:hover {
-    background-color: var(--primary-color);
+    background-color: var(--primary-color); /* Azul oscuro */
 }
 
 .cta-button.secondary {
@@ -164,7 +164,7 @@ h1, h2, h3 {
 .valor i {
     font-size: 3rem;
     margin-bottom: 1rem;
-    color: var(--accent-color);
+    color: var(--accent-color); /* Naranja brillante */
 }
 
 .about-content {
@@ -235,7 +235,7 @@ footer {
 }
 
 .social-icons-contact a {
-    color: black   ;
+    color: black;
     margin-right: 1rem;
     text-decoration: none;
     font-size: 1.5rem;
