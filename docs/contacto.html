@@ -46,13 +46,19 @@
                         <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
                     </div>
                 </div>
-                <form id="contactForm" action="https://formspree.io/f/xvgogbbb" method="post">
+                <form id="contactForm" action="https://formspree.io/f/xvgogbbb" method="POST">
                     <h2>Envíanos un mensaje</h2>
-                    <input type="text" name="name" placeholder="Nombre" required>
-                    <input type="email" name="email" placeholder="Email" required>
-                    <textarea name="message" placeholder="Mensaje" required></textarea>
+                    <label for="name">Nombre</label>
+                    <input type="text" id="name" name="name" placeholder="Nombre" required>
+                
+                    <label for="email">Correo Electrónico</label>
+                    <input type="email" id="email" name="email" placeholder="Email" required>
+                
+                    <label for="message">Mensaje</label>
+                    <textarea id="message" name="message" placeholder="Escribe tu mensaje aquí..." required></textarea>
+                    
                     <button type="submit" class="cta-button">Enviar <i class="fas fa-paper-plane"></i></button>
-                </form>
+                </form>                
             </div>
             <div class="map-container">
                 <h2>Nuestra Ubicación</h2>
