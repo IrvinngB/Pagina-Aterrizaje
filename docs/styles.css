@@ -303,9 +303,31 @@ footer {
     border-radius: 5px;
 }
 
+
+
 .logo {
     font-family: "Pixelify Sans", sans-serif;
-    color: var(--accent-color);
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 40px; /* Ajusta según el tamaño deseado */
+    width: auto;
+    margin-right: 8px; /* Espacio entre el logo y el nombre */
+}
+
+.logo-text {
+    font-size: 1.2em; /* Ajusta el tamaño de fuente según sea necesario */
+    font-weight: bold;
+}
+
+.pixel {
+    color: #FFFFFF; /* Blanco para "Pixel" */
+}
+
+.perfect {
+    color: var(--accent-color); 
 }
 
 .color {
