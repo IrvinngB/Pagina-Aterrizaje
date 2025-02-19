@@ -1,24 +1,70 @@
 (function() {
-    // Crear el contenedor del widget
+    // contenedor del widget
     const widgetContainer = document.createElement('div');
     widgetContainer.className = 'widget-container';
 
-    // Crear el iframe del widget
+    // iframe del widget
     const iframe = document.createElement('iframe');
     iframe.id = 'chatWidget';
     iframe.src = 'http://localhost:3000/index.html';
     iframe.style.border = 'none';
-    iframe.style.width = '85px';
-    iframe.style.height = '85px';
     iframe.style.transition = 'all 0.3s ease';
-    iframe.style.borderRadius = '50%'; // Solo el icono es redondo
     iframe.style.overflow = 'hidden';
     iframe.style.position = 'fixed';
-    iframe.style.bottom = '20px';
-    iframe.style.right = '20px';
     iframe.style.zIndex = '9999';
-    iframe.style.minWidth = '80px';
-    iframe.style.minHeight = '80px';
+
+    //  tamaño y posición del iframe
+    function adjustIframeSize() {
+        const isMobile = window.innerWidth <= 600;
+        const isLargeScreen = window.innerWidth > 1200;
+        
+        if (iframe.classList.contains('expanded')) {
+            if (isMobile) {
+                // Vista móvil
+                iframe.style.width = '100%';
+                iframe.style.height = '100%';
+                iframe.style.bottom = '0';
+                iframe.style.right = '0';
+                iframe.style.borderRadius = '0';
+            } else if (isLargeScreen) {
+                // Pantallas grandes
+                iframe.style.width = '450px';
+                iframe.style.height = '700px';
+                iframe.style.bottom = '20px';
+                iframe.style.right = '20px';
+                iframe.style.borderRadius = '16px';
+            } else {
+                // Pantallas medianas
+                iframe.style.width = '380px';
+                iframe.style.height = '600px';
+                iframe.style.bottom = '20px';
+                iframe.style.right = '20px';
+                iframe.style.borderRadius = '12px';
+            }
+        } else {
+            // Icono del widget 
+            if (isMobile) {
+                iframe.style.width = '60px';
+                iframe.style.height = '60px';
+                iframe.style.bottom = '10px';
+                iframe.style.right = '10px';
+            } else if (isLargeScreen) {
+                iframe.style.width = '85px';
+                iframe.style.height = '85px';
+                iframe.style.bottom = '20px';
+                iframe.style.right = '20px';
+            } else {
+                iframe.style.width = '80px';
+                iframe.style.height = '80px';
+                iframe.style.bottom = '20px';
+                iframe.style.right = '20px';
+            }
+            iframe.style.borderRadius = '50%';
+        }
+    }
+
+    // Ajustar tamaño inicial
+    adjustIframeSize();
 
     widgetContainer.appendChild(iframe);
     document.body.appendChild(widgetContainer);
@@ -30,19 +76,36 @@
         switch (event.data.type) {
             case 'resize':
                 iframe.classList.add('expanded');
-                iframe.style.width = event.data.width;
-                iframe.style.height = event.data.height;
-                iframe.style.borderRadius = '0'; // El iframe expandido no es redondo
+                adjustIframeSize();
                 break;
                 
             case 'reset':
                 iframe.classList.remove('expanded');
-                iframe.style.width = '80px';
-                iframe.style.height = '80px';
-                iframe.style.borderRadius = '50%'; // El icono es redondo
+                adjustIframeSize();
                 break;
         }
     });
+
+    // Ajustar tamaño cuando cambie el tamaño de la ventana
+    window.addEventListener('resize', adjustIframeSize);
+
+    // Pantallas chicas
+    function checkIframePosition() {
+        if (iframe.classList.contains('expanded')) {
+            const rect = iframe.getBoundingClientRect();
+            const viewportWidth = window.innerWidth;
+            const viewportHeight = window.innerHeight;
+
+            if (rect.right > viewportWidth) {
+                iframe.style.right = '10px';
+            }
+            if (rect.bottom > viewportHeight) {
+                iframe.style.bottom = '10px';
+            }
+        }
+    }
+
+    window.addEventListener('resize', checkIframePosition);
 })();
 
 // Menú de hamburguesa
