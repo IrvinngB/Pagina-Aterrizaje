@@ -135,8 +135,9 @@ h1, h2, h3 {
 
 #inicio {
     text-align: center;
-    background-color: var(--secondary-color);
+    background-image: url("/docs/img/space2.jpg");
     padding: 6rem 2rem;
+    color: rgb(255, 255, 255);
 }
 
 #inicio h1 {
