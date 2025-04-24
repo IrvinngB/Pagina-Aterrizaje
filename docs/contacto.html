@@ -13,6 +13,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
 </head>
 <body>
+
+    <audio id="background-audio" src="../docs/audio.mp3" loop></audio>
+
     <header>
         <nav>
             <div class="logo">
@@ -31,6 +34,7 @@
                 <li><a href="servicios.html">Servicios</a></li>
                 <li><a href="nosotros.html">Sobre Nosotros</a></li>
                 <li><a href="contacto.html" class="active">Contacto</a></li>
+                <li><button id="mute-button" class="audio-control" aria-label="Controlar audio"><i class="fas fa-volume-mute"></i></button></li>
             </ul>
         </nav>
     </header>
@@ -52,7 +56,7 @@
                         <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                         <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
                     </div>
-                    <p><a href="https://irvinngb.github.io/Pagina-Aterrizaje" class="links" target="_blank">Visita Google</a></p>
+                    <p><a href="https://metadesign.com/" class="links" target="_blank">Visitar MetaDesign</a></p>
                 </div>
                 <form id="contactForm" action="https://formspree.io/f/xvgogbbb" method="POST">
                     <h2>Envíanos un mensaje</h2>

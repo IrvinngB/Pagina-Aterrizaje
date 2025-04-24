@@ -77,7 +77,7 @@ nav {
 }
 
 .links {
-    color: var(--text-color);
+    color: var(--primary-color);
     display: flex;
     gap: 1rem;
     text-decoration: none;
@@ -358,6 +358,12 @@ footer {
     .footer-content {
         flex-direction: column;
     }
+
+    .audio-control {
+        margin: 0.5rem 0;
+        font-size: 1.5rem;
+        display: block; /* Make it a block element on mobile */
+    }
 }
 
 .map-container {
@@ -525,3 +531,18 @@ footer {
       height: 15px;
     }
   }
+
+/* Audio control button styling */
+.audio-control {
+    background: none;
+    border: none;
+    color: var(--secondary-color);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 10px;
+    transition: color 0.3s ease;
+}
+
+.audio-control:hover {
+    color: var(--accent-color);
+}

@@ -7,6 +7,33 @@ hamburger.addEventListener('click', () => {
     hamburger.classList.toggle('active');
 });
 
+// Control de audio
+document.addEventListener('DOMContentLoaded', function() {
+    const audioElement = document.getElementById('background-audio');
+    const muteButton = document.getElementById('mute-button');
+    const muteIcon = muteButton.querySelector('i');
+    
+    // Iniciar el audio en silencio
+    audioElement.muted = true;
+    
+    muteButton.addEventListener('click', function() {
+        if (audioElement) {
+            audioElement.muted = !audioElement.muted;
+            
+            // Cambiar el ícono según el estado
+            if (audioElement.muted) {
+                muteIcon.className = 'fas fa-volume-mute';
+            } else {
+                muteIcon.className = 'fas fa-volume-up';
+                // Intentar reproducir el audio (puede requerir interacción del usuario en algunos navegadores)
+                audioElement.play().catch(error => {
+                    console.log('Error al reproducir audio:', error);
+                });
+            }
+        }
+    });
+});
+
 // Cerrar el menú al hacer clic en un enlace
 navLinks.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
