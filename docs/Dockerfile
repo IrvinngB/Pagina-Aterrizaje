@@ -10,14 +10,15 @@ RUN apt-get update && apt-get install -y \
 # Habilitar mod_rewrite para Apache
 RUN a2enmod rewrite
 
-# Copiar la configuración personalizada de PHP
-COPY php.ini /usr/local/etc/php/
-
 # Establecer directorio de trabajo
 WORKDIR /var/www/html
 
 # Copiar los archivos del proyecto
-COPY docs/ /var/www/html/
+# El problema está aquí - la ruta es incorrecta
+# COPY docs/ /var/www/html/
+
+# En su lugar, copia desde la raíz actual
+COPY . /var/www/html/
 
 # Asegurarse que Apache puede escribir donde sea necesario
 RUN chown -R www-data:www-data /var/www/html
