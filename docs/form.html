@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitar Servicio - PixelPerfect</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="shortcut icon" href="./img/LogoColorFinal.svg" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <audio id="background-audio" src="../docs/audio.mp3" loop></audio>
+
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="./img/LogoColorFinal.svg" alt="Logo de PixelPerfect" />
+                <span class="logo-text">
+                    <span class="pixel">Pixel</span><span class="perfect">Perfect</span>
+                </span>
+            </div>
+            <button class="hamburger" aria-label="Abrir menú">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="servicios.html">Servicios</a></li>
+                <li><a href="nosotros.html">Sobre Nosotros</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><button id="mute-button" class="audio-control" aria-label="Controlar audio"><i class="fas fa-volume-mute"></i></button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="form-section">
+            <div class="form-container">
+                <h1>Solicitar Servicio</h1>
+                <div class="plan-details">
+                    <div class="plan-info">
+                        <h2>Detalles del Servicio</h2>
+                        <p><strong>Servicio:</strong> <span id="servicioSeleccionado"></span></p>
+                        <p><strong>Plan:</strong> <span id="planSeleccionado"></span></p>
+                    </div>
+                </div>
+
+                <form id="solicitudForm" action="factura.php" method="post" class="formulario-solicitud">
+                    <div class="form-group">
+                        <label for="nombre"><i class="fas fa-user"></i> Nombre completo:</label>
+                        <input type="text" id="nombre" name="nombre" placeholder="Tu nombre completo" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email"><i class="fas fa-envelope"></i> Correo electrónico:</label>
+                        <input type="email" id="email" name="email" placeholder="tu@email.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telefono"><i class="fas fa-phone"></i> Teléfono:</label>
+                        <input type="tel" id="telefono" name="telefono" placeholder="Tu número de teléfono" required>
+                    </div>
+
+                    <input type="hidden" id="servicio" name="servicio">
+                    <input type="hidden" id="plan" name="plan">
+
+                    <div class="form-group">
+                        <label for="mensaje"><i class="fas fa-comment"></i> Mensaje adicional:</label>
+                        <textarea id="mensaje" name="mensaje" rows="4" placeholder="¿Alguna indicación o requisito especial para tu servicio?"></textarea>
+                    </div>
+
+                    <div class="form-buttons">
+                        <a href="servicios.html" class="btn-secundario"><i class="fas fa-arrow-left"></i> Volver</a>
+                        <button type="submit" class="btn-solicitar"><i class="fas fa-paper-plane"></i> Enviar Solicitud</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3 class="logo">PIXEL <span class="color">PERFECT</span></h3>
+                <p>Soluciones innovadoras para el crecimiento de tu negocio</p>
+            </div>
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <p><i class="fas fa-envelope"></i> info@PixelPerfect.com</p>
+                <p><i class="fas fa-phone"></i> (123) 456-7890</p>
+            </div>
+            <div class="footer-section">
+                <h3>Síguenos</h3>
+                <div class="social-icons">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <p class="copyright">&copy; 2024 PixelPerfect. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        // Obtener parámetros de la URL
+        function getParameterByName(name) {
+            const url = window.location.href;
+            name = name.replace(/[\[\]]/g, '\\$&');
+            const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
+            const results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+
+        // Cargar los datos del servicio y plan seleccionados
+        document.addEventListener('DOMContentLoaded', function() {
+            const servicio = getParameterByName('servicio');
+            const plan = getParameterByName('plan');
+            
+            if (servicio) {
+                document.getElementById('servicioSeleccionado').textContent = servicio;
+                document.getElementById('servicio').value = servicio;
+            }
+            
+            if (plan) {
+                document.getElementById('planSeleccionado').textContent = plan;
+                document.getElementById('plan').value = plan;
+            }
+
+            // Validación del formulario
+            document.getElementById('solicitudForm').addEventListener('submit', function(e) {
+                const nombre = document.getElementById('nombre').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const telefono = document.getElementById('telefono').value.trim();
+                
+                if (!nombre || !email || !telefono) {
+                    e.preventDefault();
+                    alert('Por favor, completa todos los campos obligatorios.');
+                    return;
+                }
+                
+                if (!validateEmail(email)) {
+                    e.preventDefault();
+                    alert('Por favor, ingresa un correo electrónico válido.');
+                    return;
+                }
+                
+                if (!validatePhone(telefono)) {
+                    e.preventDefault();
+                    alert('Por favor, ingresa un número de teléfono válido.');
+                }
+            });
+            
+            // Funciones de validación
+            function validateEmail(email) {
+                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return re.test(email);
+            }
+            
+            function validatePhone(phone) {
+                const re = /^[0-9]{8,15}$/;
+                return re.test(phone.replace(/[-\s()]/g, ''));
+            }
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

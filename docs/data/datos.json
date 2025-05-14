@@ -1,0 +1,216 @@
+[
+  {
+    "servicio": "Diseño de Logotipos y Branding",
+    "descripcion": "Creación de identidades visuales impactantes que destacan en cualquier entorno.",
+    "planes": [
+      {
+        "nombre": "Básico",
+        "precio": 80,
+        "moneda": "USD",
+        "incluye": [
+          "1 propuesta de logotipo",
+          "2 rondas de revisiones",
+          "Entrega en formato PNG y JPG"
+        ],
+        "requisitos": [
+          "Nombre de la empresa",
+          "Breve descripción del negocio",
+          "Colores preferidos (opcional)"
+        ]
+      },
+      {
+        "nombre": "Profesional",
+        "precio": 150,
+        "moneda": "USD",
+        "incluye": [
+          "3 propuestas de logotipo",
+          "5 rondas de revisiones",
+          "Manual básico de uso de marca",
+          "Entrega en PNG, JPG, SVG y PDF"
+        ],
+        "requisitos": [
+          "Nombre de la empresa",
+          "Descripción detallada del negocio",
+          "Valores de la marca",
+          "Colores y estilos preferidos"
+        ]
+      },
+      {
+        "nombre": "Premium",
+        "precio": 300,
+        "moneda": "USD",
+        "incluye": [
+          "5 propuestas de logotipo",
+          "Revisiones ilimitadas",
+          "Manual completo de identidad visual",
+          "Papelería básica (tarjeta, hoja membretada)",
+          "Entrega en todos los formatos"
+        ],
+        "requisitos": [
+          "Nombre de la empresa",
+          "Historia y visión",
+          "Competencia principal",
+          "Referencias visuales"
+        ]
+      }
+    ]
+  },
+  {
+    "servicio": "Diseño Publicitario",
+    "descripcion": "Diseño de piezas publicitarias para campañas digitales e impresas.",
+    "planes": [
+      {
+        "nombre": "Flyer Digital",
+        "precio": 40,
+        "moneda": "USD",
+        "incluye": [
+          "Diseño de flyer para redes sociales",
+          "1 ronda de revisión",
+          "Entrega en JPG y PNG"
+        ],
+        "requisitos": [
+          "Texto principal",
+          "Imágenes o logos a incluir",
+          "Colores preferidos"
+        ]
+      },
+      {
+        "nombre": "Pack Publicitario",
+        "precio": 120,
+        "moneda": "USD",
+        "incluye": [
+          "3 piezas publicitarias (flyer, banner, historia)",
+          "3 rondas de revisión",
+          "Entrega en formatos digitales"
+        ],
+        "requisitos": [
+          "Objetivo de la campaña",
+          "Textos e imágenes",
+          "Redes sociales destino"
+        ]
+      },
+      {
+        "nombre": "Campaña Completa",
+        "precio": 250,
+        "moneda": "USD",
+        "incluye": [
+          "Hasta 6 piezas publicitarias (flyer, banner, historia, post, portada, anuncio)",
+          "Revisiones ilimitadas",
+          "Entrega en formatos digitales y listos para impresión",
+          "Adaptaciones para diferentes redes sociales"
+        ],
+        "requisitos": [
+          "Objetivo de la campaña",
+          "Textos e imágenes",
+          "Redes sociales destino",
+          "Lineamientos de marca (si existen)"
+        ]
+      }
+    ]
+  },
+  {
+    "servicio": "Diseño Web",
+    "descripcion": "Desarrollo de sitios web modernos, responsivos y optimizados.",
+    "planes": [
+      {
+        "nombre": "Landing Page",
+        "precio": 250,
+        "moneda": "USD",
+        "incluye": [
+          "1 página principal",
+          "Diseño responsivo",
+          "Formulario de contacto",
+          "Optimización SEO básica"
+        ],
+        "requisitos": [
+          "Contenido y textos",
+          "Imágenes y logotipo",
+          "Colores y estilo deseado"
+        ]
+      },
+      {
+        "nombre": "Sitio Corporativo",
+        "precio": 600,
+        "moneda": "USD",
+        "incluye": [
+          "Hasta 5 páginas",
+          "Diseño personalizado",
+          "Integración con redes sociales",
+          "Optimización SEO avanzada"
+        ],
+        "requisitos": [
+          "Mapa del sitio",
+          "Textos e imágenes",
+          "Información de contacto"
+        ]
+      },
+      {
+        "nombre": "E-commerce",
+        "precio": 1200,
+        "moneda": "USD",
+        "incluye": [
+          "Tienda online con hasta 20 productos",
+          "Carrito de compras y pasarela de pago",
+          "Panel de administración",
+          "Diseño responsivo y optimización SEO"
+        ],
+        "requisitos": [
+          "Listado de productos y descripciones",
+          "Imágenes de productos",
+          "Datos de contacto y políticas",
+          "Preferencias de métodos de pago"
+        ]
+      }
+    ]
+  },
+  {
+    "servicio": "Ilustración Digital",
+    "descripcion": "Creación de ilustraciones personalizadas para proyectos editoriales, redes o productos.",
+    "planes": [
+      {
+        "nombre": "Ilustración Simple",
+        "precio": 60,
+        "moneda": "USD",
+        "incluye": [
+          "1 personaje u objeto",
+          "Fondo simple",
+          "Entrega en PNG y JPG"
+        ],
+        "requisitos": [
+          "Descripción de la ilustración",
+          "Referencias visuales (opcional)"
+        ]
+      },
+      {
+        "nombre": "Ilustración Compleja",
+        "precio": 120,
+        "moneda": "USD",
+        "incluye": [
+          "Composición con varios elementos",
+          "Fondo detallado",
+          "Entrega en alta resolución"
+        ],
+        "requisitos": [
+          "Descripción detallada",
+          "Referencias visuales",
+          "Colores preferidos"
+        ]
+      },
+      {
+        "nombre": "Pack Editorial",
+        "precio": 300,
+        "moneda": "USD",
+        "incluye": [
+          "Hasta 5 ilustraciones personalizadas",
+          "Adaptación a formato de libro o revista",
+          "Entrega en alta resolución y formatos editables"
+        ],
+        "requisitos": [
+          "Temática del proyecto",
+          "Referencias visuales",
+          "Especificaciones de formato y tamaño"
+        ]
+      }
+    ]
+  }
+]

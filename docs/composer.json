@@ -1,0 +1,7 @@
+{
+  "name": "pixelperfect/website",
+  "description": "Sitio web de PixelPerfect",
+  "require": {
+    "php": "^7.4|^8.0"
+  }
+}
