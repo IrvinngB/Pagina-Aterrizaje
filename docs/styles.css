@@ -547,7 +547,6 @@ footer {
     color: var(--accent-color);
 }
 
-
 /* contenedor */
 #php-servicios {
     max-width: 1200px;
@@ -706,6 +705,41 @@ footer {
     .plan {
         padding: 15px;
     }
+    
+    #php-servicios {
+        padding: 20px 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .servicios-lista {
+        gap: 20px;
+    }
+    
+    .servicio {
+        margin-bottom: 15px;
+        width: 100%;
+    }
+    
+    .planes {
+        flex-direction: column !important;
+        gap: 15px !important;
+    }
+    
+    .plan {
+        padding: 12px;
+        max-width: 100% !important;
+        width: 100%;
+    }
+    
+    .plan h3 {
+        font-size: 18px;
+    }
+    
+    .btn-solicitar {
+        padding: 10px;
+        font-size: 14px;
+    }
 }
 
 /* Estilos para el formulario de solicitud */
@@ -810,5 +844,31 @@ footer {
     
     .btn-secundario, .formulario-solicitud .btn-solicitar {
         width: 100%;
+    }
+    
+    .form-container {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .form-section {
+        padding: 2rem 0.5rem;
+    }
+    
+    .form-container {
+        padding: 1rem;
+    }
+    
+    .plan-details {
+        padding: 0.8rem;
+    }
+    
+    .plan-info h2 {
+        font-size: 1.1rem;
+    }
+    
+    .formulario-solicitud {
+        gap: 1rem;
     }
 }
