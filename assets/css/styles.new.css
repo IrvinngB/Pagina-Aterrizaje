@@ -1,0 +1,956 @@
+/* Paleta de colores del proyecto */
+:root {
+    --primary-color: #114093; /* Azul oscuro */
+    --secondary-color: #f2f6f9; /* Azul muy claro o blanco */
+    --accent-color: #e94e1a; /* Naranja brillante */
+    --text-color: #333; /* Gris oscuro */
+    --background-color: #ffffff; /* Blanco puro */
+    
+    /* Variantes para sombras y destellos */
+    --primary-light: #2a5bb7;
+    --primary-dark: #0c2f6e;
+    --accent-light: #ff6a3c;
+    --accent-dark: #c93f12;
+    --secondary-dark: #d8e4f0;
+}
+
+/* Fuentes */
+.pixelify-sans {
+    font-family: "Pixelify Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* Estilos generales */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--accent-color);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Header y navegación */
+header {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-family: "Pixelify Sans", sans-serif;
+}
+
+.logo img {
+    max-height: 40px;
+    margin-right: 10px;
+}
+
+.logo-text .pixel {
+    color: var(--secondary-color);
+}
+
+.logo-text .perfect,
+.logo-text .color {
+    color: var(--accent-color);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li {
+    margin-left: 1.5rem;
+}
+
+.nav-links a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-weight: 500;
+    position: relative;
+    padding-bottom: 5px;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--accent-color);
+}
+
+.nav-links a.active {
+    color: var(--accent-color);
+}
+
+.nav-links a.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--accent-color);
+}
+
+/* Menú hamburguesa para dispositivos móviles */
+.hamburger {
+    display: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.hamburger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--secondary-color);
+    margin: 5px 0;
+    transition: transform 0.3s, opacity 0.3s;
+}
+
+/* Sección principal de inicio */
+#inicio {
+    height: 100vh;
+    position: relative;
+    color: var(--secondary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-top: -76px; /* Compensar la altura del header */
+}
+
+.video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.video-background::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(17, 64, 147, 0.7); /* Overlay con color primario */
+}
+
+.video-foreground,
+.video-foreground iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+#inicio .content {
+    text-align: center;
+    max-width: 800px;
+    padding: 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+#inicio h1 {
+    font-size: 3.5rem;
+    font-family: 'Pixelify Sans', sans-serif;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+#inicio p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Secciones de servicios */
+#destacados {
+    padding: 5rem 2rem;
+    text-align: center;
+    background-color: var(--secondary-color);
+}
+
+#destacados h2 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 3rem;
+}
+
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.service {
+    background-color: var(--background-color);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.service i {
+    font-size: 3rem;
+    color: var(--accent-color);
+    margin-bottom: 1.5rem;
+}
+
+.service h3 {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.service p {
+    font-size: 1rem;
+    color: var(--text-color);
+}
+
+/* Botones y enlaces CTA */
+.cta-button {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: var(--accent-color);
+    color: var(--background-color);
+    font-weight: bold;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.cta-button:hover {
+    background-color: var(--accent-dark);
+    transform: scale(1.05);
+    color: var(--background-color);
+}
+
+.cta-button i {
+    margin-left: 8px;
+}
+
+.cta-button.secondary {
+    background-color: var(--primary-color);
+}
+
+.cta-button.secondary:hover {
+    background-color: var(--primary-light);
+}
+
+/* Footer */
+footer {
+    background-color: var(--primary-dark);
+    color: var(--secondary-color);
+    padding: 3rem 1rem;
+    margin-top: auto;
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 2rem;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 200px;
+}
+
+.footer-section h3 {
+    font-size: 1.5rem;
+    color: var(--accent-color);
+    margin-bottom: 1.5rem;
+}
+
+.footer-section p {
+    margin-bottom: 0.8rem;
+}
+
+.footer-section i {
+    margin-right: 10px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.social-icons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: var(--secondary-color);
+    transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+    background-color: var(--accent-color);
+    transform: translateY(-5px);
+}
+
+.copyright {
+    text-align: center;
+    padding-top: 2rem;
+    margin-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Audio control button styling */
+.audio-control {
+    background: none;
+    border: none;
+    color: var(--secondary-color);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 10px;
+    transition: color 0.3s ease;
+}
+
+.audio-control:hover {
+    color: var(--accent-color);
+}
+
+/* Formularios */
+.form-container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: var(--secondary-color);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--background-color);
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.form-group textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 2px rgba(233, 78, 26, 0.1);
+}
+
+/* Tarjetas y componentes de Bootstrap con la paleta */
+.card {
+    border-color: #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    border-bottom: none;
+}
+
+.card-title {
+    color: var(--primary-color);
+}
+
+/* Botones de Bootstrap adaptados a la paleta */
+.btn-primary {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+}
+
+.btn-primary:hover, .btn-primary:focus {
+    background-color: var(--primary-light) !important;
+    border-color: var(--primary-light) !important;
+}
+
+.btn-accent {
+    background-color: var(--accent-color) !important;
+    border-color: var(--accent-color) !important;
+    color: white !important;
+}
+
+.btn-accent:hover, .btn-accent:focus {
+    background-color: var(--accent-dark) !important;
+    border-color: var(--accent-dark) !important;
+}
+
+/* Alertas de Bootstrap adaptadas a la paleta */
+.alert-primary {
+    background-color: rgba(17, 64, 147, 0.15);
+    color: var(--primary-color);
+    border-color: rgba(17, 64, 147, 0.3);
+}
+
+.alert-accent {
+    background-color: rgba(233, 78, 26, 0.15);
+    color: var(--accent-color);
+    border-color: rgba(233, 78, 26, 0.3);
+}
+
+/* Navbar de Bootstrap adaptada */
+.navbar-dark {
+    background-color: var(--primary-color) !important;
+}
+
+.navbar-dark .navbar-brand {
+    color: var(--secondary-color);
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: rgba(242, 246, 249, 0.85);
+}
+
+.navbar-dark .navbar-nav .nav-link:hover, 
+.navbar-dark .navbar-nav .nav-link:focus {
+    color: var(--accent-color);
+}
+
+.navbar-dark .navbar-nav .active > .nav-link, 
+.navbar-dark .navbar-nav .nav-link.active {
+    color: var(--accent-color);
+}
+
+/* Clases de texto según la paleta de colores */
+.text-primary-custom {
+    color: var(--primary-color) !important;
+}
+
+.text-accent-custom {
+    color: var(--accent-color) !important;
+}
+
+.bg-primary-custom {
+    background-color: var(--primary-color) !important;
+    color: var(--secondary-color) !important;
+}
+
+.bg-accent-custom {
+    background-color: var(--accent-color) !important;
+    color: white !important;
+}
+
+.bg-secondary-custom {
+    background-color: var(--secondary-color) !important;
+}
+
+/* Estilos para formularios de login y registro */
+.login-card, .register-card {
+    max-width: 450px;
+    margin: 2rem auto;
+    background-color: var(--background-color);
+    border-radius: 10px;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.login-card .card-body, .register-card .card-body {
+    padding: 2.5rem;
+}
+
+.login-card .card-title, .register-card .card-title {
+    color: var(--primary-color);
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+/* Estilos para la página de administración */
+.admin-dashboard .card {
+    height: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.admin-dashboard .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.admin-dashboard .card-title {
+    color: var(--primary-color);
+}
+
+.admin-dashboard .card-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-dashboard .btn {
+    margin-top: auto;
+}
+
+/* Estilos para la página de perfil */
+.profile-badge {
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: var(--background-color);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.profile-badge img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--primary-color);
+    margin-bottom: 15px;
+}
+
+/* Servicios - PHP */
+#php-servicios {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 15px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-color);
+}
+
+/* Mensaje de carga */
+.cargando {
+    text-align: center;
+    padding: 40px;
+    font-size: 18px;
+    color: var(--text-color);
+    background-color: var(--secondary-color);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Lista de servicios */
+.servicios-lista {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+/* Cada tarjeta de servicio */
+.servicio {
+    background-color: var(--background-color);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.servicio:hover {
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
+}
+
+.servicio h2 {
+    background-color: var(--primary-color);
+    color: white;
+    margin: 0;
+    padding: 18px;
+    font-size: 21px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.servicio > p {
+    padding: 20px;
+    margin: 0;
+    color: var(--text-color);
+    font-size: 16px;
+    line-height: 1.6;
+    border-bottom: 1px solid var(--secondary-color);
+}
+
+/* Estilos para los planes */
+.planes {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 20px;
+}
+
+.plan {
+    background-color: var(--secondary-color);
+    border-radius: 8px;
+    padding: 20px;
+    transition: box-shadow 0.2s ease, transform 0.3s ease;
+}
+
+.plan:hover {
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    transform: translateY(-3px);
+}
+
+.plan h3 {
+    margin-top: 0;
+    color: var(--primary-color);
+    font-size: 20px;
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.precio {
+    font-size: 18px;
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.plan strong {
+    display: block;
+    color: var(--primary-color);
+    margin-bottom: 8px;
+    font-size: 15px;
+}
+
+.plan ul {
+    margin: 0 0 20px 0;
+    padding-left: 20px;
+    list-style-type: none;
+}
+
+.plan li {
+    position: relative;
+    padding: 5px 0 5px 25px;
+    color: var(--text-color);
+}
+
+.plan li:before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
+    font-weight: bold;
+}
+
+/* Botón de solicitar */
+.btn-solicitar {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    background-color: var(--accent-color);
+    color: white;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-top: 15px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-decoration: none;
+}
+
+.btn-solicitar:hover {
+    background-color: var(--accent-dark);
+    transform: translateY(-2px);
+}
+
+/* Carousel */
+.carousel {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+  
+.carousel-inner {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+  
+.carousel-item {
+    flex: 0 0 100%;
+    padding: 4rem;
+    box-sizing: border-box;
+}
+  
+.carousel-item i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: var(--accent-color);
+}
+  
+.carousel-item h3 {
+    margin-bottom: 0.5rem;
+}
+  
+.carousel-control-prev,
+.carousel-control-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background-color: var(--accent-color);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    color: white;
+    font-size: 20px;
+    transition: background-color 0.3s ease;
+}
+  
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+    background-color: var(--primary-color);
+}
+  
+.carousel-control-prev {
+    left: 10px;
+}
+  
+.carousel-control-next {
+    right: 10px;
+}
+  
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    font-size: 20px;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+        z-index: 1001;
+    }
+    
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+        background-color: var(--primary-color);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: right 0.3s ease;
+        z-index: 1000;
+    }
+    
+    .nav-links.active {
+        right: 0;
+    }
+    
+    .nav-links li {
+        margin: 1.5rem 0;
+    }
+    
+    #inicio h1 {
+        font-size: 2.5rem;
+    }
+    
+    .service-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+    }
+    
+    .footer-section {
+        margin-bottom: 2rem;
+    }
+    
+    .carousel-item {
+        padding: 0.5rem;
+    }
+  
+    .carousel-control-prev,
+    .carousel-control-next {
+        width: 30px;
+        height: 30px;
+    }
+  
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        width: 15px;
+        height: 15px;
+    }
+    
+    .servicios-lista {
+        grid-template-columns: 1fr;
+    }
+    
+    .servicio h2 {
+        font-size: 19px;
+        padding: 15px;
+    }
+    
+    .plan {
+        padding: 15px;
+    }
+    
+    #php-servicios {
+        padding: 20px 10px;
+    }
+    
+    .form-buttons {
+        flex-direction: column;
+    }
+    
+    .btn-secundario, .formulario-solicitud .btn-solicitar {
+        width: 100%;
+    }
+    
+    .form-container {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .servicio {
+        margin-bottom: 15px;
+        width: 100%;
+    }
+    
+    .planes {
+        flex-direction: column !important;
+        gap: 15px !important;
+    }
+    
+    .plan {
+        padding: 12px;
+        max-width: 100% !important;
+        width: 100%;
+    }
+    
+    .plan h3 {
+        font-size: 18px;
+    }
+    
+    .btn-solicitar {
+        padding: 10px;
+        font-size: 14px;
+    }
+    
+    .form-section {
+        padding: 2rem 0.5rem;
+    }
+    
+    .form-container {
+        padding: 1rem;
+    }
+    
+    .plan-details {
+        padding: 0.8rem;
+    }
+    
+    .plan-info h2 {
+        font-size: 1.1rem;
+    }
+    
+    .formulario-solicitud {
+        gap: 1rem;
+    }
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    animation: fadeIn 0.8s ease forwards;
+}
+
+.delay-1 { animation-delay: 0.2s; }
+.delay-2 { animation-delay: 0.4s; }
+.delay-3 { animation-delay: 0.6s; }

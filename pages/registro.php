@@ -7,47 +7,50 @@ if (isLoggedIn()) {
     exit;
 }
 
-// Procesar el formulario
+// Procesar el formulario de registro
 $error = '';
+$success = '';
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     include_once '../config/database.php';
     
+    $nombre = sanitizeInput($_POST['nombre']);
     $correo = sanitizeInput($_POST['correo']);
+    $telefono = sanitizeInput($_POST['telefono']);
     $password = $_POST['password'];
+    $confirm_password = $_POST['confirm_password'];
     
-    if (empty($correo) || empty($password)) {
-        $error = 'Por favor, complete todos los campos';
+    // Validaciones
+    if (empty($nombre) || empty($correo) || empty($password) || empty($confirm_password)) {
+        $error = 'Por favor, complete todos los campos obligatorios';
+    } elseif (!validateEmail($correo)) {
+        $error = 'Por favor, ingrese un correo electrónico válido';
+    } elseif ($password !== $confirm_password) {
+        $error = 'Las contraseñas no coinciden';
+    } elseif (strlen($password) < 8) {
+        $error = 'La contraseña debe tener al menos 8 caracteres';
     } else {
-        // Verificar credenciales en la base de datos
-        $stmt = $conn->prepare("SELECT id_usuario, correo_usuario, pass_usuario, nombre_completo FROM Usuarios WHERE correo_usuario = ?");
+        // Verificar si el correo ya está registrado
+        $stmt = $conn->prepare("SELECT id_usuario FROM Usuarios WHERE correo_usuario = ?");
         $stmt->bind_param("s", $correo);
         $stmt->execute();
         $result = $stmt->get_result();
         
-        if ($result->num_rows === 1) {
-            $user = $result->fetch_assoc();
-            
-            // Verificar contraseña
-            if (password_verify($password, $user['pass_usuario'])) {
-                // Inicio de sesión exitoso
-                $_SESSION['user_id'] = $user['id_usuario'];
-                $_SESSION['user_email'] = $user['correo_usuario'];
-                $_SESSION['user_name'] = $user['nombre_completo'];
-                
-                // Verificar si es un correo de la empresa
-                $_SESSION['is_admin'] = isCompanyEmail($user['correo_usuario']);
-                  // Redirigir según el tipo de usuario
-                if ($_SESSION['is_admin']) {
-                    header('Location: ../admin/dashboard.php');
-                } else {
-                    header('Location: ../index.php');
-                }
-                exit;
-            } else {
-                $error = 'Contraseña incorrecta';
-            }
+        if ($result->num_rows > 0) {
+            $error = 'El correo electrónico ya está registrado';
         } else {
-            $error = 'El correo electrónico no está registrado';
+            // Encriptar contraseña
+            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+            
+            // Insertar nuevo usuario
+            $stmt = $conn->prepare("INSERT INTO Usuarios (correo_usuario, pass_usuario, nombre_completo, telefono) VALUES (?, ?, ?, ?)");
+            $stmt->bind_param("ssss", $correo, $hashed_password, $nombre, $telefono);
+            
+            if ($stmt->execute()) {
+                $success = 'Registro exitoso. Ahora puede iniciar sesión.';
+            } else {
+                $error = 'Error al registrar: ' . $conn->error;
+            }
         }
         
         $stmt->close();
@@ -56,8 +59,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn->close();
 }
 
-// No incluimos el header en las páginas de login
-$pageTitle = 'Iniciar Sesión';
+// No incluimos el header en las páginas de registro
+$pageTitle = 'Registro de Usuario';
 ?>
 
 <!DOCTYPE html>
@@ -86,7 +89,7 @@ $pageTitle = 'Iniciar Sesión';
         }
         .auth-container {
             width: 100%;
-            max-width: 450px;
+            max-width: 550px;
             padding: 2rem;
         }
         .auth-logo {
@@ -130,6 +133,11 @@ $pageTitle = 'Iniciar Sesión';
             outline: none;
             box-shadow: 0 0 0 2px rgba(233, 78, 26, 0.2);
         }
+        .form-text {
+            font-size: 0.875rem;
+            color: #6c757d;
+            margin-top: 0.25rem;
+        }
         .btn-submit {
             background-color: var(--accent-color);
             color: white;
@@ -167,6 +175,21 @@ $pageTitle = 'Iniciar Sesión';
             color: #d32f2f;
             border: 1px solid #ffcdd2;
         }
+        .alert-success {
+            background-color: #e0f7ea;
+            color: #2e7d32;
+            border: 1px solid #c8e6c9;
+        }
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin-left: -0.5rem;
+            margin-right: -0.5rem;
+        }
+        .col-2 {
+            flex: 0 0 50%;
+            padding: 0 0.5rem;
+        }
     </style>
 </head>
 <body>
@@ -175,26 +198,50 @@ $pageTitle = 'Iniciar Sesión';
             <img src="../assets/images/LogoColorFinal.svg" alt="PixelPerfect Logo">
         </div>
         <div class="auth-card">
-            <h2 class="auth-title">Iniciar Sesión</h2>
+            <h2 class="auth-title">Registro de Usuario</h2>
             
             <?php if (!empty($error)): ?>
                 <div class="alert alert-danger"><?php echo $error; ?></div>
             <?php endif; ?>
             
+            <?php if (!empty($success)): ?>
+                <div class="alert alert-success"><?php echo $success; ?></div>
+            <?php endif; ?>
+            
             <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
+                <div class="form-group">
+                    <label for="nombre" class="form-label">Nombre Completo</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre" required>
+                </div>
                 <div class="form-group">
                     <label for="correo" class="form-label">Correo Electrónico</label>
                     <input type="email" class="form-control" id="correo" name="correo" required>
+                    <div class="form-text">Los correos con dominio @pixel.com tienen permisos de administrador.</div>
                 </div>
                 <div class="form-group">
-                    <label for="password" class="form-label">Contraseña</label>
-                    <input type="password" class="form-control" id="password" name="password" required>
+                    <label for="telefono" class="form-label">Teléfono</label>
+                    <input type="tel" class="form-control" id="telefono" name="telefono">
                 </div>
-                <button type="submit" class="btn-submit">Iniciar Sesión</button>
+                <div class="row">
+                    <div class="col-2">
+                        <div class="form-group">
+                            <label for="password" class="form-label">Contraseña</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                            <div class="form-text">Mínimo 8 caracteres</div>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="form-group">
+                            <label for="confirm_password" class="form-label">Confirmar Contraseña</label>
+                            <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn-submit">Registrarse</button>
             </form>
             
             <div class="auth-footer">
-                <p>¿No tienes una cuenta? <a href="registro.php">Regístrate aquí</a></p>
+                <p>¿Ya tienes una cuenta? <a href="login.php">Inicia sesión aquí</a></p>
             </div>
         </div>
     </div>

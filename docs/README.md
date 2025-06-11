@@ -6,7 +6,7 @@ PixelPerfect es un sitio web para una agencia ficticia de diseño gráfico que o
 ## Estructura del Sitio
 El sitio consta de 4 páginas principales:
 
-1. **Inicio (index.html)**: Página principal con un video de fondo y servicios destacados.
+1. **Inicio (index.php)**: Página principal con un video de fondo y servicios destacados.
 2. **Servicios (servicios.html)**: Muestra todos los servicios ofrecidos a través de un carrusel interactivo.
 3. **Sobre Nosotros (nosotros.html)**: Información sobre la empresa, sus valores y testimonios de clientes.
 4. **Contacto (contacto.html)**: Formulario de contacto, información de la empresa y mapa de ubicación.
@@ -45,7 +45,7 @@ El sitio está completamente adaptado para dispositivos móviles y de escritorio
 
 ## Archivos y Directorios
 - **HTML**: 
-  - index.html - Página de inicio
+  - index.php - Página de inicio
   - servicios.html - Página de servicios
   - nosotros.html - Página sobre la empresa
   - contacto.html - Página de contacto
