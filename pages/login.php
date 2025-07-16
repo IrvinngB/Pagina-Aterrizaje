@@ -34,10 +34,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['user_email'] = $user['correo_usuario'];
                 $_SESSION['user_name'] = $user['nombre_completo'];
                 
-                // Verificar si es un correo de la empresa
-                $_SESSION['is_admin'] = isCompanyEmail($user['correo_usuario']);
-                  // Redirigir según el tipo de usuario
-                if ($_SESSION['is_admin']) {
+                // Verificar si es administrador
+                $isAdmin = ($user['correo_usuario'] === 'admin@pixelperfect.com') || isCompanyEmail($user['correo_usuario']);
+                $_SESSION['is_admin'] = $isAdmin;
+                if ($isAdmin) {
+                    $_SESSION['user_role'] = 'admin';
+                }
+                
+                // Redirigir según el tipo de usuario
+                if ($isAdmin) {
                     header('Location: ../admin/dashboard.php');
                 } else {
                     header('Location: ../index.php');

@@ -1,12 +1,61 @@
 <?php
 require_once '../includes/functions.php';
-$pageTitle = 'Contacto'; // Define el título de la página
-include '../includes/header.php'; // Incluye el encabezado común
+require_once '../config/database.php';
+
+$pageTitle = 'Contacto';
+$message = '';
+$messageType = 'success';
+
+// Procesar formulario de contacto
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $nombre = sanitizeInput($_POST['nombre']);
+    $correo = sanitizeInput($_POST['correo']);
+    $telefono = sanitizeInput($_POST['telefono'] ?? '');
+    $asunto = sanitizeInput($_POST['asunto'] ?? 'Consulta general');
+    $mensaje_texto = sanitizeInput($_POST['mensaje']);
+    
+    if (empty($nombre) || empty($correo) || empty($mensaje_texto)) {
+        $message = 'Por favor, complete todos los campos obligatorios.';
+        $messageType = 'danger';
+    } elseif (!validateEmail($correo)) {
+        $message = 'Por favor, ingrese un correo electrónico válido.';
+        $messageType = 'danger';
+    } else {
+        // Insertar en la base de datos
+        $id_usuario = isLoggedIn() ? $_SESSION['user_id'] : null;
+        
+        $stmt = $conn->prepare("INSERT INTO Contacto (nombre_contacto, correo_contacto, telefono_contacto, asunto, mensaje, id_usuario) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssssi", $nombre, $correo, $telefono, $asunto, $mensaje_texto, $id_usuario);
+        
+        if ($stmt->execute()) {
+            $message = 'Mensaje enviado correctamente. Nos pondremos en contacto pronto.';
+            $messageType = 'success';
+            
+            // Limpiar variables para resetear el formulario
+            $nombre = $correo = $telefono = $asunto = $mensaje_texto = '';
+        } else {
+            $message = 'Error al enviar el mensaje. Por favor, intente nuevamente.';
+            $messageType = 'danger';
+        }
+        
+        $stmt->close();
+    }
+}
+
+include '../includes/header.php';
 ?>
 
+<main class="container-fluid p-0">
         <br>
         <section id="contacto">
             <h1>Contáctanos</h1>
+            
+            <?php if (!empty($message)): ?>
+                <div class="alert alert-<?php echo $messageType; ?>" role="alert">
+                    <?php echo $message; ?>
+                </div>
+            <?php endif; ?>
+            
             <div class="contact-container">
                 <div class="contact-info">
                     <h2>Información de Contacto</h2>
@@ -20,16 +69,28 @@ include '../includes/header.php'; // Incluye el encabezado común
                     </div>
                     <p><a href="https://metadesign.com/" class="links" target="_blank">Visitar MetaDesign</a></p>
                 </div>
-                <form id="contactForm" action="https://formspree.io/f/xvgogbbb" method="POST">
+                
+                <form id="contactForm" method="POST" action="">
                     <h2>Envíanos un mensaje</h2>
-                    <label for="name">Nombre</label>
-                    <input type="text" id="name" name="name" placeholder="Nombre" required>
+                    
+                    <label for="nombre">Nombre *</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Nombre completo" 
+                           value="<?php echo htmlspecialchars($nombre ?? ''); ?>" required>
                 
-                    <label for="email">Correo Electrónico</label>
-                    <input type="email" id="email" name="email" placeholder="Email" required>
+                    <label for="correo">Correo Electrónico *</label>
+                    <input type="email" id="correo" name="correo" placeholder="correo@ejemplo.com" 
+                           value="<?php echo htmlspecialchars($correo ?? ''); ?>" required>
+                    
+                    <label for="telefono">Teléfono</label>
+                    <input type="tel" id="telefono" name="telefono" placeholder="(123) 456-7890" 
+                           value="<?php echo htmlspecialchars($telefono ?? ''); ?>">
+                    
+                    <label for="asunto">Asunto</label>
+                    <input type="text" id="asunto" name="asunto" placeholder="Asunto del mensaje" 
+                           value="<?php echo htmlspecialchars($asunto ?? ''); ?>">
                 
-                    <label for="message">Mensaje</label>
-                    <textarea id="message" name="message" placeholder="Escribe tu mensaje aquí..." required></textarea>
+                    <label for="mensaje">Mensaje *</label>
+                    <textarea id="mensaje" name="mensaje" placeholder="Escribe tu mensaje aquí..." required><?php echo htmlspecialchars($mensaje_texto ?? ''); ?></textarea>
                     
                     <button type="submit" class="cta-button">Enviar <i class="fas fa-paper-plane"></i></button>
                 </form>                
@@ -45,5 +106,6 @@ include '../includes/header.php'; // Incluye el encabezado común
                 ></iframe>
             </div>
         </section>
+</main>
 
 <?php include '../includes/footer.php'; ?>

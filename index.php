@@ -14,7 +14,7 @@ include 'includes/header.php'; // Incluye el encabezado común
         <h1>Perfección pixel a pixel</h1>
         <p>Impulsamos el crecimiento de tu empresa con estrategias personalizadas</p>
         <br>
-        <a href="pages/contacto.html" class="cta-button">Solicitar Consulta <i class="fas fa-arrow-right"></i></a>
+        <a href="pages/contacto.php" class="cta-button">Solicitar Consulta <i class="fas fa-arrow-right"></i></a>
     </div>
 </section>
 
@@ -38,7 +38,7 @@ include 'includes/header.php'; // Incluye el encabezado común
         </div>
     </div>
     <br>
-    <a href="pages/servicios.html" class="cta-button secondary">Ver todos los servicios</a>
+    <a href="pages/servicios.php" class="cta-button secondary">Ver todos los servicios</a>
 </section>
 
 <?php include 'includes/footer.php'; ?>

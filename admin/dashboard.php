@@ -24,7 +24,18 @@ include '../includes/header.php';
                 <div class="admin-content">
                     <h3>Gestión de Usuarios</h3>
                     <p>Administrar usuarios registrados en el sistema.</p>
-                    <a href="/Laboratorio 3/admin/usuarios.php" class="cta-button">Ir a Usuarios</a>
+                    <a href="usuarios.php" class="cta-button">Ir a Usuarios</a>
+                </div>
+            </div>
+            
+            <div class="admin-card">
+                <div class="admin-icon">
+                    <i class="fas fa-tags"></i>
+                </div>
+                <div class="admin-content">
+                    <h3>Gestión de Categorías</h3>
+                    <p>Administrar las categorías de servicios.</p>
+                    <a href="categorias.php" class="cta-button">Ir a Categorías</a>
                 </div>
             </div>
             
@@ -35,7 +46,7 @@ include '../includes/header.php';
                 <div class="admin-content">
                     <h3>Gestión de Servicios</h3>
                     <p>Administrar los servicios ofrecidos.</p>
-                    <a href="/Laboratorio 3/admin/servicios.php" class="cta-button">Ir a Servicios</a>
+                    <a href="servicios.php" class="cta-button">Ir a Servicios</a>
                 </div>
             </div>
             
@@ -46,7 +57,7 @@ include '../includes/header.php';
                 <div class="admin-content">
                     <h3>Solicitudes</h3>
                     <p>Ver y gestionar solicitudes de servicios.</p>
-                    <a href="/Laboratorio 3/admin/solicitudes.php" class="cta-button">Ver Solicitudes</a>
+                    <a href="solicitudes.php" class="cta-button">Ver Solicitudes</a>
                 </div>
             </div>
 
