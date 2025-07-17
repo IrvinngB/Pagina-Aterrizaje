@@ -42,6 +42,21 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
         $direccion = htmlspecialchars($solicitud['direccion_servicio']);
         $fecha_programada = date('d/m/Y H:i', strtotime($solicitud['fecha_programada']));
         
+        // Verificar si la factura ya existe
+        $stmtCheck = $conn->prepare("SELECT id_factura FROM facturas WHERE numero_factura = ?");
+        $stmtCheck->bind_param("s", $numeroFactura);
+        $stmtCheck->execute();
+        $resCheck = $stmtCheck->get_result();
+        if ($resCheck->num_rows == 0) {
+            // Insertar la factura con los campos existentes
+            $stmtInsert = $conn->prepare("INSERT INTO facturas (numero_factura, id_usuario, id_servicio, subtotal, moneda, notas, estado) VALUES (?, ?, ?, ?, ?, ?, ?)");
+            $subtotal = floatval($solicitud['precio_final']);
+            $estado = 'emitida';
+            $stmtInsert->bind_param("siidsss", $numeroFactura, $solicitud['id_usuario'], $solicitud['id_servicio'], $subtotal, $moneda, $mensaje, $estado);
+            $stmtInsert->execute();
+            $stmtInsert->close();
+        }
+        $stmtCheck->close();
         // Incluir el encabezado
         include '../includes/header.php';
 ?>
