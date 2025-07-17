@@ -281,7 +281,7 @@ function viewSolicitud(solicitud) {
                 <p><strong>Nombre:</strong> ${solicitud.nombre_completo || 'N/A'}</p>
                 <p><strong>Correo:</strong> ${solicitud.correo_usuario || 'N/A'}</p>
                 <p><strong>Teléfono:</strong> ${solicitud.telefono_contacto || 'N/A'}</p>
-                <p><strong>Dirección:</strong> ${solicitud.direccion_servicio || 'N/A'}</p>
+                <p><strong>Instrucciones:</strong> ${solicitud.direccion_servicio || 'N/A'}</p>
             </div>
             
             <div class="info-section">

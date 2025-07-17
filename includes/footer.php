@@ -12,11 +12,6 @@
             <p><i class="fas fa-phone"></i> (123) 456-7890</p>
         </div>
         <div class="footer-section">
-            <h3>Enlaces</h3>
-            <p><a href="<?php echo $root_path; ?>pages/privacidad.php">Política de Privacidad</a></p>
-            <p><a href="<?php echo $root_path; ?>pages/contacto.php">Términos de Uso</a></p>
-        </div>
-        <div class="footer-section">
             <h3>Síguenos</h3>
             <div class="social-icons">
                 <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
@@ -28,11 +23,14 @@
     <p class="copyright">&copy; 2024 PixelPerfect. Todos los derechos reservados.</p>
 </footer>
 
-<?php
-// Mostrar banner de cookies si es necesario
-echo showCookieBanner();
+<!-- Banner de cookies -->
+<?php 
+if (function_exists('showCookieBanner')) {
+    echo showCookieBanner();
+}
 ?>
 
-<script src="<?php echo $root_path; ?>assets/js/script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/Laboratorio 3/assets/js/script.js"></script>
 </body>
 </html>

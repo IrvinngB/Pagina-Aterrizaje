@@ -49,8 +49,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bind_param("iisssssd", $_SESSION['user_id'], $id_servicio, $fecha_programada, $notas_cliente, $direccion_servicio, $telefono_contacto, $prioridad, $precio_final);
         
         if ($stmt->execute()) {
-            $message = 'Solicitud enviada correctamente. Nos pondremos en contacto pronto para confirmar.';
-            $messageType = 'success';
+            // Obtener el ID de la solicitud recién creada
+            $solicitud_id = $conn->insert_id;
+            
+            // Redireccionar a la página de factura con el ID de la solicitud
+            header("Location: factura_detalle.php?id=" . $solicitud_id);
+            exit;
         } else {
             $message = 'Error al enviar la solicitud. Por favor, intente nuevamente.';
             $messageType = 'danger';
@@ -101,7 +105,7 @@ include '../includes/header.php';
                 <input type="datetime-local" id="fecha_programada" name="fecha_programada" 
                        min="<?php echo date('Y-m-d\TH:i'); ?>" required>
                 
-                <label for="direccion_servicio">Dirección del Servicio *</label>
+                <label for="direccion_servicio">Instrucciones especificas *</label>
                 <textarea id="direccion_servicio" name="direccion_servicio" 
                           placeholder="Ingrese la dirección completa donde se realizará el servicio..." required></textarea>
                 
