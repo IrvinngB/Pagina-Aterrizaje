@@ -1,20 +1,28 @@
-.pixelify-sans {
-  font-family: "Pixelify Sans", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-}
-
+/* Paleta de colores del proyecto */
 :root {
     --primary-color: #114093; /* Azul oscuro */
     --secondary-color: #f2f6f9; /* Azul muy claro o blanco */
     --accent-color: #e94e1a; /* Naranja brillante */
     --text-color: #333; /* Gris oscuro */
     --background-color: #ffffff; /* Blanco puro */
+    
+    /* Variantes para sombras y destellos */
+    --primary-light: #2a5bb7;
+    --primary-dark: #0c2f6e;
+    --accent-light: #ff6a3c;
+    --accent-dark: #c93f12;
+    --secondary-dark: #d8e4f0;
 }
 
+/* Fuentes */
+.pixelify-sans {
+    font-family: "Pixelify Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
 
-
+/* Estilos generales */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -26,27 +34,51 @@ body {
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--background-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
+main {
+    flex: 1;
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--accent-color);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Header y navegación */
 header {
     background-color: var(--primary-color);
     color: var(--secondary-color);
-    padding: 1rem;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
 }
 
 nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 1rem;
     max-width: 1200px;
     margin: 0 auto;
 }
 
 .logo {
+    display: flex;
+    align-items: center;
     font-size: 1.5rem;
     font-weight: bold;
 }

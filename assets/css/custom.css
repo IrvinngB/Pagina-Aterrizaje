@@ -1,0 +1,87 @@
+/* Estilos personalizados para aplicar la paleta de colores del proyecto */
+
+/* Colores para botones */
+.btn-primary {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark) !important;
+    border-color: var(--primary-dark) !important;
+}
+
+/* Clases de texto con colores de la paleta */
+.text-accent {
+    color: var(--accent-color) !important;
+    text-decoration: none;
+}
+
+.text-accent:hover {
+    color: var(--accent-dark) !important;
+    text-decoration: underline;
+}
+
+.btn-accent {
+    background-color: var(--accent-color) !important;
+    border-color: var(--accent-color) !important;
+    color: white !important;
+}
+
+.btn-accent:hover {
+    background-color: var(--accent-dark) !important;
+    border-color: var(--accent-dark) !important;
+}
+
+/* Colores para textos */
+.text-primary {
+    color: var(--primary-color) !important;
+}
+
+.text-accent {
+    color: var(--accent-color) !important;
+}
+
+/* Colores para fondos */
+.bg-primary {
+    background-color: var(--primary-color) !important;
+}
+
+.bg-accent {
+    background-color: var(--accent-color) !important;
+}
+
+.bg-light {
+    background-color: var(--secondary-color) !important;
+}
+
+/* Colores para alertas */
+.alert-primary {
+    background-color: var(--secondary-color) !important;
+    color: var(--primary-color) !important;
+    border-color: var(--primary-light) !important;
+}
+
+.alert-accent {
+    background-color: #fff0eb !important;
+    color: var(--accent-color) !important;
+    border-color: var(--accent-light) !important;
+}
+
+/* Colores para badges */
+.badge-primary {
+    background-color: var(--primary-color) !important;
+}
+
+.badge-accent {
+    background-color: var(--accent-color) !important;
+}
+
+/* Colores para cards */
+.card-border-primary {
+    border-color: var(--primary-color) !important;
+}
+
+.card-border-accent {
+    border-color: var(--accent-color) !important;
+}
